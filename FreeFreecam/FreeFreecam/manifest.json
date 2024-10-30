@@ -1,0 +1,10 @@
+{
+  "Id": "FreeFreecam",
+  "AssemblyPath": "FreeFreecam.dll",
+  "Metadata": {
+    "Name": "FreeFreecam",
+    "Author": "x8c8r",
+    "Version": "1.0.0",
+    "Description": "(Practically) Removes the Freecam restriction."
+  }
+}
