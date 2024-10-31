@@ -1,0 +1,10 @@
+{
+  "Id": "QuickPlay",
+  "AssemblyPath": "QuickPlay.dll",
+  "Metadata": {
+    "Name": "QuickPlay",
+    "Author": "x8c8r",
+    "Version": "1.0.0",
+    "Description": "Restores the Quick Play button on the main menu."
+  }
+}

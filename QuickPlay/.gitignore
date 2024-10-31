@@ -1,0 +1,10 @@
+.idea/
+.vs/
+*.user
+/local
+
+bin/
+obj/
+*.pck
+
+manifestation/

@@ -1,0 +1,16 @@
+id = "QuickPlay"
+name = "QuickPlay"
+description = "Restores the disabled Quick Play button in the main menu."
+version = "1.0.0"
+homepage = "https://github.com/x8c8r/webfishing"
+author = "x8c8r"
+
+icon = "icon.png"
+readme = "README.md"
+
+# both are optional here, pick what you want
+[project]
+csharp = "./QuickPlay/QuickPlay.csproj"
+
+[[dependencies]]
+thunderstore_version = "NotNet-GDWeave-2.0.12"
