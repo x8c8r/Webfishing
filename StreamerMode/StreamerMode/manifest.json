@@ -1,0 +1,10 @@
+{
+  "Id": "StreamerMode",
+  "AssemblyPath": "StreamerMode.dll",
+  "Metadata": {
+    "Name": "StreamerMode",
+    "Author": "x8c8r",
+    "Version": "1.0.0",
+    "Description": "Mod that provides options to toggle things off for streamers to safely stream the game."
+  }
+}
