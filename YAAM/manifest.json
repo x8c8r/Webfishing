@@ -1,0 +1,10 @@
+{
+  "Id": "YAAM",
+  "AssemblyPath": "YAAM.dll",
+  "Metadata": {
+    "Name": "YAAM",
+    "Author": "x8c8r",
+    "Version": "1.0.0",
+    "Description": "Yet Another Autofishing Mod, featuring toggles for casting, reeling and mashing"
+  }
+}
