@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Themes/main.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/Singletons/Tooltips/tooltip_node.gd" type="Script" id=2]
+[ext_resource path="res://mods/YAAM/ui/yaam_quick_menu.gd" type="Script" id=3]
+
+[node name="yaam_quick_menu" type="Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -72.0
+margin_top = 230.0
+margin_right = 3.0
+margin_bottom = 305.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="Button" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "YAAM"
+
+[node name="TooltipNode" type="Control" parent="Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+header = "YAAM Quick Menu"
+body = "Control YAAM from here!"
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchor_left = -1.95967
+anchor_right = 1.02633
+anchor_bottom = 2.987
+margin_left = -1.02498
+margin_right = -0.974998
+margin_bottom = -0.0250244
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="exit" type="Button" parent="Panel"]
+anchor_left = 0.067
+anchor_right = 0.067
+margin_left = -0.00800037
+margin_top = 15.0
+margin_right = 67.992
+margin_bottom = 49.0
+text = "Exit"
+
+[node name="autocast" type="Button" parent="Panel"]
+anchor_left = 0.067
+anchor_right = 0.067
+margin_left = -0.00800037
+margin_top = 75.0
+margin_right = 139.992
+margin_bottom = 109.0
+text = "Autocast: On"
+
+[node name="autoreel" type="Button" parent="Panel"]
+anchor_left = 0.067
+anchor_right = 0.067
+margin_left = -0.00800037
+margin_top = 115.0
+margin_right = 139.992
+margin_bottom = 149.0
+text = "Autocast: Off"
+
+[node name="automash" type="Button" parent="Panel"]
+anchor_left = 0.067
+anchor_right = 0.067
+margin_left = -0.00800037
+margin_top = 155.0
+margin_right = 149.992
+margin_bottom = 189.0
+text = "Automash: Off"
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Panel/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Panel/autocast" to="." method="_on_autocast_pressed"]
+[connection signal="pressed" from="Panel/autoreel" to="." method="_on_autoreel_pressed"]
+[connection signal="pressed" from="Panel/automash" to="." method="_on_automash_pressed"]

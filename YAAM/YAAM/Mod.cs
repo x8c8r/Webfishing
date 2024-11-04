@@ -11,6 +11,7 @@ public class Mod : IMod {
     public Mod(IModInterface modInterface) {
         Mod.Config = modInterface.ReadConfig<Config>();
         modInterface.RegisterScriptMod(new InjectConfig());
+        modInterface.RegisterScriptMod(new InjectMenu());
         
         modInterface.RegisterScriptMod(new FishingRodPatch());
         modInterface.RegisterScriptMod(new ControllerProcessPatch());
@@ -58,6 +59,65 @@ public class InjectConfig : IScriptMod
             {
                 yield return token;
             }
+        }
+    }
+}
+
+public class InjectMenu : IScriptMod
+{
+    public bool ShouldRun(string path) => path == "res://Scenes/HUD/playerhud.gdc";
+
+    public IEnumerable<Token> Modify(string path, IEnumerable<Token> tokens)
+    {
+        var extendsWaiter = new MultiTokenWaiter([
+            t => t.Type is TokenType.PrExtends,
+            t => t.Type is TokenType.Newline
+        ], allowPartialMatch: true);
+        var readyWaiter = new FunctionWaiter("_ready");
+        
+        foreach (var token in tokens)
+        {
+            if (extendsWaiter.Check(token))
+            {
+                yield return token;
+                
+                yield return new Token(TokenType.Newline);
+
+                yield return new Token(TokenType.PrOnready);
+                yield return new Token(TokenType.PrVar);
+                yield return new IdentifierToken("YAAM");
+                yield return new Token(TokenType.OpAssign);
+                yield return new Token(TokenType.Dollar);
+                yield return new ConstantToken(new StringVariant("/root/YAAM"));
+                
+                yield return new Token(TokenType.Newline);
+            }
+            else if (readyWaiter.Check(token))
+            {
+                yield return token;
+
+                yield return new Token(TokenType.Newline, 1);
+
+                //$main/in_game.add_child(quick_menu.instance())
+                yield return new Token(TokenType.Dollar);
+                yield return new IdentifierToken("main");
+                yield return new Token(TokenType.OpDiv);
+                yield return new IdentifierToken("in_game");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("add_child");
+                yield return new Token(TokenType.ParenthesisOpen);
+                yield return new IdentifierToken("YAAM");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("quick_menu");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("instance");
+                yield return new Token(TokenType.ParenthesisOpen);
+                yield return new Token(TokenType.ParenthesisClose);
+                yield return new Token(TokenType.ParenthesisClose);
+                
+                yield return new Token(TokenType.Newline, 1);
+            }
+            else yield return token;
         }
     }
 }
