@@ -1,7 +1,7 @@
 id = "YAAM"
 name = "YAAM"
 description = "Yet Another Autofishing Mod, featuring toggles for casting, reeling and mashing."
-version = "1.0.0"
+version = "1.0.1"
 homepage = "https://github.com/x8c8r/webfishing"
 author = "x8c8r"
 
@@ -10,7 +10,11 @@ readme = "README.md"
 
 # both are optional here, pick what you want
 [project]
+godot = "./GodotProject/project.godot"
 csharp = "./YAAM/YAAM.csproj"
+
+[[dependencies]]
+thunderstore_version = "PuppyGirl-TackleBox-0.4.0"
 
 [[dependencies]]
 thunderstore_version = "NotNet-GDWeave-2.0.13"

@@ -49,7 +49,26 @@ public class MinigamePatch : IScriptMod
                 yield return token;
 
                 yield return new Token(TokenType.CfIf);
-                yield return new ConstantToken(new BoolVariant(true));
+                yield return new IdentifierToken("YAAM");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("config");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("Automash");
+
+                yield return new Token(TokenType.OpOr);
+                
+                yield return new Token(TokenType.ParenthesisOpen);
+                yield return new IdentifierToken("Input");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("is_action_just_pressed");
+                yield return new Token(TokenType.ParenthesisOpen);
+                yield return new ConstantToken(new StringVariant("primary_action"));
+                yield return new Token(TokenType.ParenthesisClose);
+                yield return new Token(TokenType.OpAnd);
+                yield return new Token(TokenType.OpNot);
+                yield return new IdentifierToken("reeling");
+                yield return new Token(TokenType.ParenthesisClose);
+                
                 yield return new Token(TokenType.Colon);
                 
                 newlineConsumer.SetReady();
@@ -60,7 +79,22 @@ public class MinigamePatch : IScriptMod
                 yield return new Token(TokenType.Newline, 1);
             
                 yield return new Token(TokenType.CfIf);
-                yield return new ConstantToken(new BoolVariant(true));
+                
+                yield return new IdentifierToken("YAAM");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("config");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("Autoreel");
+
+                yield return new Token(TokenType.OpOr);
+                
+                yield return new IdentifierToken("Input");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("is_action_pressed");
+                yield return new Token(TokenType.ParenthesisOpen);
+                yield return new ConstantToken(new StringVariant("primary_action"));
+                yield return new Token(TokenType.ParenthesisClose);
+                
                 yield return new Token(TokenType.Colon);
             
                 newlineConsumer.SetReady();

@@ -1,5 +1,6 @@
 {
   "Id": "YAAM",
+  "PackPath": "YAAM.pck",
   "AssemblyPath": "YAAM.dll",
   "Metadata": {
     "Name": "YAAM",
