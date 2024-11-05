@@ -82,7 +82,7 @@ public class InjectMenu : IScriptMod
                 yield return token;
                 
                 yield return new Token(TokenType.Newline);
-
+                
                 yield return new Token(TokenType.PrOnready);
                 yield return new Token(TokenType.PrVar);
                 yield return new IdentifierToken("YAAM");

@@ -13,6 +13,10 @@ config_version=4
 config/name="YAAM"
 config/icon="res://icon.png"
 
+[global]
+
+InContext=true
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

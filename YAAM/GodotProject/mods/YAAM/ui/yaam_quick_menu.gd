@@ -13,64 +13,35 @@ func _update_button_text(a, b):
 	$Panel/autocast.text = "Autocast: " + ("On" if YAAM.config.Autocast else "Off")
 	$Panel/autoreel.text = "Autoreel: " + ("On" if YAAM.config.Autoreel else "Off")
 	$Panel/automash.text = "Automash: " + ("On" if YAAM.config.Automash else "Off")
-
+	$Panel/cast_slider/Label.text = "Cast Distance: " + str(YAAM.config.CastDistance)
+	$Panel/cast_slider.value = YAAM.config.CastDistance
 
 func _on_Button_pressed():
 	$Button.visible = false
 	$Panel.visible = true
-	pass # Replace with function body.
-
 
 func _on_exit_pressed():
 	$Panel.visible = false
 	$Button.visible = true
 
-func _on_autocast_pressed():
-	var conf = {
-		"Autocast": !YAAM.config.Autocast,
-		"Autoreel": YAAM.config.Autoreel,
-		"Automash": YAAM.config.Automash
-	}
-	
-	TackleBox.set_mod_config("YAAM", conf)
-	#_update_config(!YAAM.config.Autocast, null, null)
-
+func _on_autocast_pressed():	
+	YAAM.config.Autocast = !YAAM.config.Autocast
+	_update_config()
 
 func _on_autoreel_pressed():
-	var conf = {
-		"Autocast": YAAM.config.Autocast,
-		"Autoreel": !YAAM.config.Autoreel,
-		"Automash": YAAM.config.Automash
-	}
-	
-	TackleBox.set_mod_config("YAAM", conf)
-	#_update_config(null, !YAAM.config.Autoreel, null)
-
+	YAAM.config.Autoreel = !YAAM.config.Autoreel
+	_update_config()
 
 func _on_automash_pressed():
-	var conf = {
-		"Autocast": YAAM.config.Autocast,
-		"Autoreel": YAAM.config.Autoreel,
-		"Automash": !YAAM.config.Automash
-	}
-	
-	TackleBox.set_mod_config("YAAM", conf)
-	#_update_config(null, null, !YAAM.config.Automash)
+	YAAM.config.Automash = !YAAM.config.Automash
+	_update_config()
 
+func _on_cast_slider_value_changed(value):
+	YAAM.config.CastDistance = value
+	_update_config()
 	
-func _update_config(cast, reel, mash):
-	if cast == null: cast = YAAM.config.Autocast
-	if reel == null: reel = YAAM.config.Autoreel
-	if mash == null: mash = YAAM.config.Automash
-	
-	var conf = {
-		"Autocast": cast,
-		"Autoreel": reel,
-		"Automash": mash
-	}
-	
-	TackleBox.set_mod_config("YAAM", conf)
-	
+func _update_config():
+	TackleBox.set_mod_config("YAAM", YAAM.config)	
 	
 func _setup_sounds():
 	$Button.connect("mouse_entered", GlobalAudio, "_play_sound", ["swish"])

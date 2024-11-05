@@ -33,7 +33,7 @@ body = "Control YAAM from here!"
 visible = false
 anchor_left = -1.95967
 anchor_right = 1.02633
-anchor_bottom = 2.987
+anchor_bottom = 3.53367
 margin_left = -1.02498
 margin_right = -0.974998
 margin_bottom = -0.0250244
@@ -57,7 +57,7 @@ margin_left = -0.00800037
 margin_top = 75.0
 margin_right = 139.992
 margin_bottom = 109.0
-text = "Autocast: On"
+text = "Autocast: Off"
 
 [node name="autoreel" type="Button" parent="Panel"]
 anchor_left = 0.067
@@ -77,8 +77,30 @@ margin_right = 149.992
 margin_bottom = 189.0
 text = "Automash: Off"
 
+[node name="cast_slider" type="HSlider" parent="Panel"]
+margin_left = 15.0
+margin_top = 222.0
+margin_right = 180.0
+margin_bottom = 254.0
+min_value = 1.5
+max_value = 9.0
+step = 0.1
+value = 1.5
+
+[node name="Label" type="Label" parent="Panel/cast_slider"]
+anchor_left = 0.439
+anchor_top = -0.5
+anchor_right = 0.439
+anchor_bottom = -0.5
+margin_left = -72.435
+margin_top = -17.0
+margin_right = 72.565
+margin_bottom = 17.0
+text = "Cast Distance: 1.5"
+
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Panel/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Panel/autocast" to="." method="_on_autocast_pressed"]
 [connection signal="pressed" from="Panel/autoreel" to="." method="_on_autoreel_pressed"]
 [connection signal="pressed" from="Panel/automash" to="." method="_on_automash_pressed"]
+[connection signal="value_changed" from="Panel/cast_slider" to="." method="_on_cast_slider_value_changed"]

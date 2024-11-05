@@ -5,15 +5,12 @@
 - Autocast
 - Autoreel
 - Automash
+- Cast Distance Slider
 
 All toggleable!
 
 ## Using
 ### This mod requires [Tacklebox](https://thunderstore.io/c/webfishing/p/PuppyGirl/TackleBox/) to function!
-Configure the mod config either directly in the `GDWeave/Configs/YAAM.json` or by using [Tacklebox](https://thunderstore.io/c/webfishing/p/PuppyGirl/TackleBox/)
+The mod is best configued via a Quick Menu, added to the right side of the screen.
 
-If autocasting is enabled equipping the fishing rod will always cast it as soon as possible. This will make equipping anything else or moving impossible. Turn off Autocasting in the Mods menu to stop this.
-
-## Planned Features:
-~~- Tacklebox support~~ (Added in 1.0.1)
-- Toggle between short and long distance casts
+If autocasting is enabled equipping the fishing rod will always cast it as soon as possible. This will make equipping anything else or moving impossible. Turn off Autocasting in the Quick Menu.
