@@ -141,7 +141,20 @@ public class ControllerProcessPatch : IScriptMod
     public IEnumerable<Token> Modify(string path, IEnumerable<Token> tokens)
     {
         var newlineConsumer = new TokenConsumer(t => t.Type is TokenType.Newline);
-        var functionWaiter = new FunctionWaiter("_controlled_process");
+        
+        var recastWaiter = new MultiTokenWaiter([
+            t => t is IdentifierToken { Name: "_camera_update" },
+            t => t.Type is TokenType.ParenthesisOpen,
+            t => t.Type is TokenType.ParenthesisClose,
+            t => t.Type is TokenType.Newline,
+            t => t.Type is TokenType.Newline,
+            t => t is IdentifierToken { Name: "_freecam_input" },
+            t => t.Type is TokenType.ParenthesisOpen,
+            t => t is IdentifierToken { Name: "delta" },
+            t => t.Type is TokenType.ParenthesisClose,
+            t => t.Type is TokenType.Newline,
+            t => t.Type is TokenType.Newline,
+        ], allowPartialMatch:true);
 
         var bobberWaiter = new MultiTokenWaiter([
             t => t is IdentifierToken { Name: "fish_detect" },
@@ -165,7 +178,7 @@ public class ControllerProcessPatch : IScriptMod
                 newlineConsumer.Reset();
             }
             
-            if (functionWaiter.Check(token))
+            if (recastWaiter.Check(token))
             {
                 yield return new Token(TokenType.Newline, 1);
 
@@ -268,9 +281,9 @@ public class ControllerProcessPatch : IScriptMod
                 yield return new IdentifierToken("config");
                 yield return new Token(TokenType.Period);
                 yield return new IdentifierToken("CastDistance");
-
+                
                 yield return new Token(TokenType.Newline, 1);
-
+                
                 yield return new Token(TokenType.CfElse);
                 yield return new Token(TokenType.Colon);
                 yield return new IdentifierToken("bobber_preview");
@@ -280,7 +293,7 @@ public class ControllerProcessPatch : IScriptMod
                 yield return new IdentifierToken("z");
                 yield return new Token(TokenType.OpAssign);
                 yield return new Token(TokenType.OpSub);
-                yield return new IdentifierToken("clamp");
+                yield return new Token(TokenType.BuiltInFunc, (uint)BuiltinFunction.LogicClamp);
                 yield return new Token(TokenType.ParenthesisOpen);
                 yield return new IdentifierToken("primary_hold_timer");
                 yield return new Token(TokenType.OpMul);
@@ -290,8 +303,6 @@ public class ControllerProcessPatch : IScriptMod
                 yield return new Token(TokenType.Comma);
                 yield return new ConstantToken(new RealVariant(9.0));
                 yield return new Token(TokenType.ParenthesisClose);
-                
-                yield return new Token(TokenType.Newline, 1);
                 
                 newlineConsumer.SetReady();
             }

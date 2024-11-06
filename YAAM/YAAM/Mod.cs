@@ -13,7 +13,7 @@ public class Mod : IMod {
         modInterface.RegisterScriptMod(new InjectConfig());
         modInterface.RegisterScriptMod(new InjectMenu());
         
-        modInterface.RegisterScriptMod(new FishingRodPatch());
+        modInterface.RegisterScriptMod(new FishingRodPatch()); 
         modInterface.RegisterScriptMod(new ControllerProcessPatch());
         modInterface.RegisterScriptMod(new MinigamePatch());
         
