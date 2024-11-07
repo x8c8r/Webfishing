@@ -1,4 +1,5 @@
-﻿using GDWeave.Godot;
+﻿using System.Reflection.Metadata;
+using GDWeave.Godot;
 using GDWeave.Godot.Variants;
 using GDWeave.Modding;
 
@@ -111,7 +112,7 @@ public class FishingRodPatch : IScriptMod
                 yield return new Token(TokenType.Colon);
                 yield return new IdentifierToken("strength");
                 yield return new Token(TokenType.OpAssign);
-                yield return new IdentifierToken("clamp");
+                yield return new Token(TokenType.BuiltInFunc, (uint) BuiltinFunction.LogicClamp);
                 yield return new Token(TokenType.ParenthesisOpen);
                 yield return new IdentifierToken("primary_hold_timer");
                 yield return new Token(TokenType.OpMul);
@@ -182,6 +183,10 @@ public class ControllerProcessPatch : IScriptMod
             {
                 yield return new Token(TokenType.Newline, 1);
 
+                // if state == STATES.DEFAULT and
+                // held_item.id.begins_with("fishing_rod") and
+                // YAAM.config.Autocast and
+                // PlayerData.bait_inv[PlayerData.bait_selected] == 0:
                 yield return new Token(TokenType.CfIf);
                 yield return new IdentifierToken("state");
                 yield return new Token(TokenType.OpEqual);
@@ -190,7 +195,7 @@ public class ControllerProcessPatch : IScriptMod
                 yield return new IdentifierToken("DEFAULT");
 
                 yield return new Token(TokenType.OpAnd);
-
+                
                 yield return new IdentifierToken("held_item");
                 yield return new Token(TokenType.Period);
                 yield return new IdentifierToken("id");
@@ -207,16 +212,32 @@ public class ControllerProcessPatch : IScriptMod
                 yield return new IdentifierToken("config");
                 yield return new Token(TokenType.Period);
                 yield return new IdentifierToken("Autocast");
+                
+                yield return new Token(TokenType.OpAnd);
+                
+                yield return new IdentifierToken("PlayerData");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("bait_inv");
+                yield return new Token(TokenType.BracketOpen);
+                yield return new IdentifierToken("PlayerData");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("bait_selected");
+                yield return new Token(TokenType.BracketClose);
+                yield return new Token(TokenType.OpNotEqual);
+                yield return new ConstantToken(new IntVariant(0));
+
                 yield return new Token(TokenType.Colon);
 
                 yield return new Token(TokenType.Newline, 2);
 
+                // _cast_fishing_rod()
                 yield return new IdentifierToken("_cast_fishing_rod");
                 yield return new Token(TokenType.ParenthesisOpen);
                 yield return new Token(TokenType.ParenthesisClose);
 
                 yield return new Token(TokenType.Newline, 1);
 
+                // if state == STATES.SHOWCASE and YAAM.config.Autocast
                 yield return new Token(TokenType.CfIf);
                 yield return new IdentifierToken("state");
                 yield return new Token(TokenType.OpEqual);
@@ -240,6 +261,8 @@ public class ControllerProcessPatch : IScriptMod
                 yield return new Token(TokenType.Period);
                 yield return new IdentifierToken("dialogue");
                 yield return new Token(TokenType.Colon);
+                
+                yield return new Token(TokenType.Newline, 3);
 
                 yield return new IdentifierToken("hud");
                 yield return new Token(TokenType.Period);
@@ -249,6 +272,14 @@ public class ControllerProcessPatch : IScriptMod
                 yield return new Token(TokenType.ParenthesisOpen);
                 yield return new ConstantToken(new StringVariant("_finished"));
                 yield return new Token(TokenType.ParenthesisClose);
+                
+                yield return new Token(TokenType.Newline, 3);
+                
+                yield return new IdentifierToken("hud");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("dialogue_cooldown");
+                yield return new Token(TokenType.OpAssign);
+                yield return new ConstantToken(new IntVariant(0));
 
                 yield return new Token(TokenType.Newline, 2);
 

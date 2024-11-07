@@ -32,8 +32,8 @@ public class MinigamePatch : IScriptMod
         {
             if (functionWaiter.Check(token))
             {
-                if (Mod.Config.Automash) mashWaiter.SetReady();
-                if (Mod.Config.Autoreel) reelWaiter.SetReady();
+                mashWaiter.SetReady();
+                reelWaiter.SetReady();
             }
 
             if (newlineConsumer.Check(token)) continue;
