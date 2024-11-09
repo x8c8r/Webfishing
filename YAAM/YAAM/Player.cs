@@ -27,7 +27,7 @@ public class FishingRodPatch : IScriptMod
             t => t.Type is TokenType.ParenthesisClose,
             t => t.Type is TokenType.Newline
         ], true, true);
-
+        
         var crfWaiter2 = new MultiTokenWaiter([
             t => t is IdentifierToken { Name: "_sync_sfx" },
             t => t.Type is TokenType.ParenthesisOpen,
@@ -186,7 +186,7 @@ public class ControllerProcessPatch : IScriptMod
                 // if state == STATES.DEFAULT and
                 // held_item.id.begins_with("fishing_rod") and
                 // YAAM.config.Autocast and
-                // PlayerData.bait_inv[PlayerData.bait_selected] == 0:
+                // (PlayerData.bait_inv[PlayerData.bait_selected] > 0 || YAAM.config.AutocastStopsWithNoBait):
                 yield return new Token(TokenType.CfIf);
                 yield return new IdentifierToken("state");
                 yield return new Token(TokenType.OpEqual);
@@ -212,9 +212,10 @@ public class ControllerProcessPatch : IScriptMod
                 yield return new IdentifierToken("config");
                 yield return new Token(TokenType.Period);
                 yield return new IdentifierToken("Autocast");
-                
+
                 yield return new Token(TokenType.OpAnd);
-                
+
+                yield return new Token(TokenType.ParenthesisOpen);
                 yield return new IdentifierToken("PlayerData");
                 yield return new Token(TokenType.Period);
                 yield return new IdentifierToken("bait_inv");
@@ -223,11 +224,20 @@ public class ControllerProcessPatch : IScriptMod
                 yield return new Token(TokenType.Period);
                 yield return new IdentifierToken("bait_selected");
                 yield return new Token(TokenType.BracketClose);
-                yield return new Token(TokenType.OpNotEqual);
+                yield return new Token(TokenType.OpGreater);
                 yield return new ConstantToken(new IntVariant(0));
 
-                yield return new Token(TokenType.Colon);
+                yield return new Token(TokenType.OpOr);
 
+                yield return new Token(TokenType.OpNot);
+                yield return new IdentifierToken("YAAM");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("config");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("AutocastRequiresBait");
+                yield return new Token(TokenType.ParenthesisClose);
+                
+                yield return new Token(TokenType.Colon);
                 yield return new Token(TokenType.Newline, 2);
 
                 // _cast_fishing_rod()
@@ -236,6 +246,8 @@ public class ControllerProcessPatch : IScriptMod
                 yield return new Token(TokenType.ParenthesisClose);
 
                 yield return new Token(TokenType.Newline, 1);
+                
+                // ---------------------------------------
 
                 // if state == STATES.SHOWCASE and YAAM.config.Autocast
                 yield return new Token(TokenType.CfIf);
@@ -286,7 +298,7 @@ public class ControllerProcessPatch : IScriptMod
                 yield return new IdentifierToken("_exit_showcase");
                 yield return new Token(TokenType.ParenthesisOpen);
                 yield return new Token(TokenType.ParenthesisClose);
-
+                
                 yield return new Token(TokenType.Newline, 1);
             }
             else if (bobberWaiter.Check(token))

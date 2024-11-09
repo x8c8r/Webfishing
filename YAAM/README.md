@@ -6,6 +6,7 @@
 - Autoreel
 - Automash
 - Cast Distance Slider
+- Auto bait refill
 
 All toggleable!
 

@@ -16,6 +16,9 @@ public class Mod : IMod {
         modInterface.RegisterScriptMod(new FishingRodPatch()); 
         modInterface.RegisterScriptMod(new ControllerProcessPatch());
         modInterface.RegisterScriptMod(new MinigamePatch());
+        modInterface.RegisterScriptMod(new PlayerData());
+        
+        modInterface.RegisterScriptMod(new MyOCWouldDoThis());
         
         modInterface.Logger.Information("Loaded YAAM!");
     }

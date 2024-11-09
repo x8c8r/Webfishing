@@ -15,6 +15,7 @@ func _update_button_text(a, b):
 	$Panel/automash.text = "Automash: " + ("On" if YAAM.config.Automash else "Off")
 	$Panel/cast_slider/Label.text = "Cast Distance: " + str(YAAM.config.CastDistance)
 	$Panel/cast_slider.value = YAAM.config.CastDistance
+	$Panel/baitautorefill.text = "Bait Auto Refill: " + ("On" if YAAM.config.BaitAutoRefill else "Off")
 
 func _on_Button_pressed():
 	$Button.visible = false
@@ -40,6 +41,11 @@ func _on_cast_slider_value_changed(value):
 	YAAM.config.CastDistance = value
 	_update_config()
 	
+
+func _on_baitautorefill_pressed():
+	YAAM.config.BaitAutoRefill = !YAAM.config.BaitAutoRefill
+	_update_config()
+	
 func _update_config():
 	TackleBox.set_mod_config("YAAM", YAAM.config)	
 	
@@ -63,4 +69,8 @@ func _setup_sounds():
 	$Panel/exit.connect("mouse_entered", GlobalAudio, "_play_sound", ["swish"])
 	if $Panel/exit.has_signal("button_down"): $Panel/exit.connect("button_down", GlobalAudio, "_play_sound", ["button_down"])
 	if $Panel/exit.has_signal("button_up"): $Panel/exit.connect("button_up", GlobalAudio, "_play_sound", ["button_up"])
+	
+	$Panel/baitautorefill.connect("mouse_entered", GlobalAudio, "_play_sound", ["swish"])
+	if $Panel/baitautorefill.has_signal("button_down"): $Panel/baitautorefill.connect("button_down", GlobalAudio, "_play_sound", ["button_down"])
+	if $Panel/baitautorefill.has_signal("button_up"): $Panel/baitautorefill.connect("button_up", GlobalAudio, "_play_sound", ["button_up"])
 	

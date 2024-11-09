@@ -15,6 +15,7 @@ theme = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="Button" type="Button" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "YAAM"
@@ -30,10 +31,9 @@ header = "YAAM Quick Menu"
 body = "Control YAAM from here!"
 
 [node name="Panel" type="Panel" parent="."]
-visible = false
-anchor_left = -1.95967
+anchor_left = -2.30633
 anchor_right = 1.02633
-anchor_bottom = 3.53367
+anchor_bottom = 4.667
 margin_left = -1.02498
 margin_right = -0.974998
 margin_bottom = -0.0250244
@@ -77,6 +77,15 @@ margin_right = 149.992
 margin_bottom = 189.0
 text = "Automash: Off"
 
+[node name="baitautorefill" type="Button" parent="Panel"]
+anchor_left = 0.067
+anchor_right = 0.067
+margin_left = -0.00800037
+margin_top = 300.0
+margin_right = 149.992
+margin_bottom = 334.0
+text = "Bait Auto Refill: Off"
+
 [node name="cast_slider" type="HSlider" parent="Panel"]
 margin_left = 15.0
 margin_top = 222.0
@@ -103,4 +112,5 @@ text = "Cast Distance: 1.5"
 [connection signal="pressed" from="Panel/autocast" to="." method="_on_autocast_pressed"]
 [connection signal="pressed" from="Panel/autoreel" to="." method="_on_autoreel_pressed"]
 [connection signal="pressed" from="Panel/automash" to="." method="_on_automash_pressed"]
+[connection signal="pressed" from="Panel/baitautorefill" to="." method="_on_baitautorefill_pressed"]
 [connection signal="value_changed" from="Panel/cast_slider" to="." method="_on_cast_slider_value_changed"]
