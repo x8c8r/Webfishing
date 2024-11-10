@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://mods/Waypoints/WaypointsMenu/waypoint_button.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Themes/main.tres" type="Theme" id=2]
+
+[node name="waypoint_button" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = 15.0
+script = ExtResource( 1 )
+
+[node name="Button" type="Button" parent="."]
+margin_right = 850.0
+margin_bottom = 50.0
+theme = ExtResource( 2 )
+clip_text = true
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
