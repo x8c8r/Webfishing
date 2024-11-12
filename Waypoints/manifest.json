@@ -3,9 +3,9 @@
   "AssemblyPath": "Waypoints.dll",
   "PackPath": "Waypoints.pck",
   "Metadata": {
-    "Name": "Waypoints!",
+    "Name": "Waypoints",
     "Author": "x8c8r",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Description": "Create waypoints and teleport to them at any point!"
   }
 }

@@ -1,8 +1,8 @@
 
 id = "Waypoints"
-name = "Waypoints!"
+name = "Waypoints"
 description = "Create waypoints and teleport to them at any point!"
-version = "1.0.0"
+version = "1.0.1"
 homepage = "https://github.com/x8c8r/webfishing"
 author = "x8c8r"
 

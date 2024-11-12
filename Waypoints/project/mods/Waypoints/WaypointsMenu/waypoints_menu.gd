@@ -17,9 +17,11 @@ func _update_menu():
 	for child in $Panel/Panel/VBoxContainer.get_children():
 		$Panel/Panel/VBoxContainer.remove_child(child)
 		
-	$teleport.disabled = true
-	$delete.disabled = true
-		
+	$Panel/Panel/teleport.disabled = true
+	$Panel/Panel/delete.disabled = true
+	
+	$Panel/Panel/no_waypoints.visible = true if Waypoints.waypoints.size() == 0 else false
+	
 	for waypoint in Waypoints.waypoints:
 		var wp = preload("res://mods/Waypoints/WaypointsMenu/waypoint_button.tscn").instance()
 		
@@ -33,17 +35,19 @@ func _select_waypoint(wp):
 		pass
 	selected = wp
 	
-	$teleport.disabled = false
-	$delete.disabled = false
+	$Panel/Panel/teleport.disabled = false
+	$Panel/Panel/delete.disabled = false
 	
 func _teleport_to_waypoint():
 	if selected != null:
 		Waypoints.teleport(selected.title)
 		
 func _open():
+	Waypoints.menu_opened = true
 	visible = true
 
 func _close():
+	Waypoints.menu_opened = false
 	visible = false
 
 func _on_close_pressed():
@@ -68,4 +72,3 @@ func _on_create_pressed():
 func _on_cancel_pressed():
 	$add_new/Panel/Panel/waypoint_title.text = "Waypoint"
 	$add_new.visible = false
-

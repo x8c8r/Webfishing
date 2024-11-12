@@ -3,8 +3,8 @@ extends Control
 signal _pressed
 
 var title = "" setget ,get_title
-
-func _setup(title):
+		
+func _setup(title):	
 	$Button.text = title
 	self.title = title
 	

@@ -1,177 +1,190 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://mods/Waypoints/WaypointsMenu/waypoints_menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Themes/panel_med.tres" type="StyleBox" id=2]
 [ext_resource path="res://Assets/Themes/main.tres" type="Theme" id=3]
 [ext_resource path="res://Assets/Themes/panel_green.tres" type="StyleBox" id=4]
+[ext_resource path="res://Scenes/Menus/Main Menu/ui_generic_button.gd" type="Script" id=5]
 
 [node name="waypoints_menu" type="Control"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -8.0
-margin_top = -4.0
-margin_right = -8.0
-margin_bottom = -4.0
 mouse_filter = 2
 script = ExtResource( 1 )
 
 [node name="Panel" type="Panel" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -475.0
-margin_top = -450.0
-margin_right = 475.0
-margin_bottom = 450.0
+anchor_left = 0.253
+anchor_top = 0.083
+anchor_right = 0.747
+anchor_bottom = 0.917
+margin_left = -0.76004
+margin_top = 0.359993
+margin_right = 0.759888
+margin_bottom = -0.360046
 theme = ExtResource( 3 )
 
 [node name="Panel" type="Panel" parent="Panel"]
-anchor_left = 0.0252632
-anchor_top = 0.00888889
-anchor_right = 0.974737
-anchor_bottom = 0.991111
-margin_left = 1.0
-margin_top = 12.0
-margin_right = -1.0
-margin_bottom = -12.0
+anchor_left = 0.026
+anchor_top = 0.022
+anchor_right = 0.974
+anchor_bottom = 0.978
+margin_left = 0.30003
+margin_top = 0.199999
+margin_right = -0.299927
+margin_bottom = -0.200134
 theme = ExtResource( 3 )
 custom_styles/panel = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
+[node name="close" type="Button" parent="Panel/Panel"]
+anchor_left = 0.95
+anchor_top = -0.047
+anchor_right = 1.082
+anchor_bottom = 0.035
+margin_left = -0.00012207
+margin_top = 0.419994
+margin_right = 0.179871
+margin_bottom = -0.0999966
+theme = ExtResource( 3 )
+text = "Close"
+script = ExtResource( 5 )
+
+[node name="teleport" type="Button" parent="Panel/Panel"]
+anchor_left = 0.95
+anchor_top = 0.977
+anchor_right = 1.083
+anchor_bottom = 1.058
+margin_left = -0.00012207
+margin_top = -0.21991
+margin_right = 0.299866
+margin_bottom = 0.120056
+theme = ExtResource( 3 )
+text = "Teleport"
+script = ExtResource( 5 )
+
+[node name="add" type="Button" parent="Panel/Panel"]
+anchor_left = -0.067
+anchor_top = 0.971
+anchor_right = 0.067
+anchor_bottom = 1.052
+margin_left = 0.299995
+margin_top = -0.0599365
+margin_right = -0.300026
+margin_bottom = 0.28009
+theme = ExtResource( 3 )
+text = "Add"
+script = ExtResource( 5 )
+
+[node name="delete" type="Button" parent="Panel/Panel"]
+anchor_left = 0.117
+anchor_top = 0.971
+anchor_right = 0.25
+anchor_bottom = 1.052
+margin_left = -0.300018
+margin_top = -0.0599365
+margin_right = -3.05176e-05
+margin_bottom = 0.28009
+theme = ExtResource( 3 )
+text = "Delete"
+script = ExtResource( 5 )
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Panel"]
+anchor_left = 0.028
 anchor_top = 0.064
 anchor_right = 1.0
 anchor_bottom = 0.94
-margin_left = 25.0
+margin_left = -0.200005
 margin_top = -0.0400009
 margin_bottom = -0.400024
 custom_constants/separation = 55
 
-[node name="close" type="Button" parent="."]
-anchor_left = 10.1
-anchor_top = -11.625
-anchor_right = 13.85
-anchor_bottom = -9.75
-margin_left = -18032.0
-margin_top = 12630.0
-margin_right = -25112.0
-margin_bottom = 10675.0
-theme = ExtResource( 3 )
-text = "Close"
-
-[node name="teleport" type="Button" parent="."]
-anchor_left = 10.1
-anchor_top = -11.625
-anchor_right = 13.85
-anchor_bottom = -9.75
-margin_left = -18032.0
-margin_top = 13505.0
-margin_right = -25112.0
-margin_bottom = 11550.0
-theme = ExtResource( 3 )
-text = "Teleport"
-
-[node name="add" type="Button" parent="."]
-anchor_left = 10.1
-anchor_top = -11.625
-anchor_right = 13.85
-anchor_bottom = -9.75
-margin_left = -18942.0
-margin_top = 13505.0
-margin_right = -26022.0
-margin_bottom = 11550.0
-theme = ExtResource( 3 )
-text = "Add"
-
-[node name="delete" type="Button" parent="."]
-anchor_left = 10.1
-anchor_top = -11.625
-anchor_right = 13.85
-anchor_bottom = -9.75
-margin_left = -18792.0
-margin_top = 13505.0
-margin_right = -25872.0
-margin_bottom = 11550.0
-theme = ExtResource( 3 )
-text = "Delete"
+[node name="no_waypoints" type="Label" parent="Panel/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 0.000183105
+text = "You have no waypoints :C"
+align = 1
+valign = 1
 
 [node name="add_new" type="Control" parent="."]
 visible = false
-anchor_left = 1.0
-anchor_top = 0.5
+anchor_left = 0.766
+anchor_top = 0.38
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -40.0
-margin_top = -20.0
-margin_bottom = 20.0
+anchor_bottom = 0.62
+margin_left = -0.720093
+margin_top = -0.400024
+margin_bottom = 0.400024
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="add_new"]
-anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -450.0
-margin_top = -130.0
-margin_bottom = 130.0
+anchor_bottom = 1.0
 theme = ExtResource( 3 )
 
 [node name="Panel" type="Panel" parent="add_new/Panel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -210.0
-margin_top = -115.0
-margin_right = 210.0
-margin_bottom = 115.0
+anchor_left = 0.033
+anchor_top = 0.058
+anchor_right = 0.967
+anchor_bottom = 0.942
+margin_left = 0.15
+margin_top = -0.0800009
+margin_right = -0.150024
+margin_bottom = 0.0799866
 custom_styles/panel = ExtResource( 2 )
 
 [node name="waypoint_title" type="LineEdit" parent="add_new/Panel/Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -203.0
-margin_top = 47.0
-margin_right = 203.0
-margin_bottom = 81.0
+anchor_left = 0.017
+anchor_top = 0.204
+anchor_right = 0.983
+anchor_bottom = 0.352
+margin_left = -0.14
+margin_top = 0.079998
+margin_right = 0.139984
+margin_bottom = 0.0399933
 custom_styles/normal = ExtResource( 4 )
 text = "New Waypoint"
 align = 1
 
 [node name="Label" type="Label" parent="add_new/Panel/Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -23.5
-margin_right = 23.5
-margin_bottom = 34.0
+anchor_left = 0.444
+anchor_right = 0.556
+anchor_bottom = 0.148
+margin_left = 0.019989
+margin_right = -0.0200195
+margin_bottom = -0.0400009
 text = "Title"
 
 [node name="create" type="Button" parent="add_new/Panel/Panel"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 7.0
-margin_top = -95.0
-margin_right = 139.0
-margin_bottom = -31.0
+anchor_left = 0.017
+anchor_top = 0.587
+anchor_right = 0.331
+anchor_bottom = 0.865
+margin_left = -0.14
+margin_top = -0.0100098
+margin_right = -0.0200195
+margin_bottom = 0.0499878
 text = "Create"
+script = ExtResource( 5 )
 
 [node name="cancel" type="Button" parent="add_new/Panel/Panel"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -139.0
-margin_top = -95.0
-margin_right = -7.0
-margin_bottom = -31.0
+anchor_left = 0.669
+anchor_top = 0.587
+anchor_right = 0.983
+anchor_bottom = 0.865
+margin_left = 0.019989
+margin_top = -0.0100098
+margin_right = 0.139984
+margin_bottom = 0.0499878
 text = "Cancel"
+script = ExtResource( 5 )
 
-[connection signal="pressed" from="close" to="." method="_on_close_pressed"]
-[connection signal="pressed" from="teleport" to="." method="_on_teleport_pressed"]
-[connection signal="pressed" from="add" to="." method="_on_add_pressed"]
-[connection signal="pressed" from="delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="Panel/Panel/close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Panel/Panel/teleport" to="." method="_on_teleport_pressed"]
+[connection signal="pressed" from="Panel/Panel/add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="Panel/Panel/delete" to="." method="_on_delete_pressed"]
 [connection signal="pressed" from="add_new/Panel/Panel/create" to="." method="_on_create_pressed"]
 [connection signal="pressed" from="add_new/Panel/Panel/cancel" to="." method="_on_cancel_pressed"]

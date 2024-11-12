@@ -7,7 +7,9 @@ public class Mod : IMod {
     public Mod(IModInterface modInterface) {
         modInterface.Logger.Information("Loaded Waypoints! Trans rights!");
         
-        // modInterface.RegisterScriptMod(new EscMenuInject());
+        modInterface.RegisterScriptMod(new MenuInject());
+        
+        modInterface.RegisterScriptMod(new PlayerHudPatch());
         modInterface.RegisterScriptMod(new EscMenuPatch());
     }
 
