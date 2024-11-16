@@ -10,7 +10,8 @@ public class MinigamePatch : IScriptMod
     
     public IEnumerable<Token> Modify(string path, IEnumerable<Token> tokens)
     {
-        var functionWaiter = new FunctionWaiter("_physics_process");
+        var processWaiter = new FunctionWaiter("_physics_process");
+        var readyWaiter = new FunctionWaiter("_ready");
         
         var newlineConsumer = new TokenConsumer(t => t.Type is TokenType.Newline);
 
@@ -30,7 +31,8 @@ public class MinigamePatch : IScriptMod
 
         foreach (var token in tokens)
         {
-            if (functionWaiter.Check(token))
+            
+            if (processWaiter.Check(token))
             {
                 mashWaiter.SetReady();
                 reelWaiter.SetReady();
@@ -44,7 +46,51 @@ public class MinigamePatch : IScriptMod
                 newlineConsumer.Reset();
             }
 
-            if (mashWaiter.Check(token))
+            if (readyWaiter.Check(token))
+            {
+                //	if !YAAM.get_catch_qualities().has(params["quality"]):
+                // _kill()
+                // _reached_end(false)
+                // return
+                yield return new Token(TokenType.Newline, 1);
+                
+                yield return new Token(TokenType.CfIf);
+                yield return new Token(TokenType.OpNot);
+                yield return new IdentifierToken("YAAM");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("get_catch_qualities");
+                yield return new Token(TokenType.ParenthesisOpen);
+                yield return new Token(TokenType.ParenthesisClose);
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("has");
+                yield return new Token(TokenType.ParenthesisOpen);
+                yield return new IdentifierToken("params");
+                yield return new Token(TokenType.BracketOpen);
+                yield return new ConstantToken(new StringVariant("quality"));
+                yield return new Token(TokenType.BracketClose);
+                yield return new Token(TokenType.ParenthesisClose);
+                yield return new Token(TokenType.Colon);
+
+                yield return new Token(TokenType.Newline, 2);
+                
+                yield return new IdentifierToken("_kill");
+                yield return new Token(TokenType.ParenthesisOpen);
+                yield return new Token(TokenType.ParenthesisClose);
+                
+                yield return new Token(TokenType.Newline, 2);
+                
+                yield return new IdentifierToken("_reached_end");
+                yield return new Token(TokenType.ParenthesisOpen);
+                yield return new ConstantToken(new BoolVariant(false));
+                yield return new Token(TokenType.ParenthesisClose);
+                
+                yield return new Token(TokenType.Newline, 2);
+
+                yield return new Token(TokenType.CfReturn);
+                
+                yield return new Token(TokenType.Newline, 1);
+            }
+            else if (mashWaiter.Check(token))
             {
                 yield return token;
 

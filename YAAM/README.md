@@ -2,13 +2,12 @@
 ## Yet Another Autofishing Mod
 
 ## Features
-- Autocast
-- Autoreel
-- Automash
+- Autocast (Toggleable)
+- Autoreel (Toggleable)
+- Automash (Toggleable)
 - Cast Distance Slider
 - Auto bait refill
-
-All toggleable!
+- Selecting qualities to catch
 
 ## Using
 ### This mod requires [Tacklebox](https://thunderstore.io/c/webfishing/p/PuppyGirl/TackleBox/) to function!

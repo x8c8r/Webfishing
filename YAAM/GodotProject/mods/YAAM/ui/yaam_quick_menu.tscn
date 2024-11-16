@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Themes/main.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/Singletons/Tooltips/tooltip_node.gd" type="Script" id=2]
 [ext_resource path="res://mods/YAAM/ui/yaam_quick_menu.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Menus/Main Menu/ui_generic_button.gd" type="Script" id=4]
 
 [node name="yaam_quick_menu" type="Control"]
 anchor_left = 1.0
@@ -15,10 +16,10 @@ theme = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="Button" type="Button" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "YAAM"
+script = ExtResource( 4 )
 
 [node name="TooltipNode" type="Control" parent="Button"]
 anchor_right = 1.0
@@ -31,60 +32,64 @@ header = "YAAM Quick Menu"
 body = "Control YAAM from here!"
 
 [node name="Panel" type="Panel" parent="."]
-anchor_left = -2.30633
+visible = false
+anchor_left = -2.573
 anchor_right = 1.02633
-anchor_bottom = 4.667
+anchor_bottom = 5.13367
 margin_left = -1.02498
-margin_right = -0.974998
+margin_right = -0.974991
 margin_bottom = -0.0250244
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="exit" type="Button" parent="Panel"]
-anchor_left = 0.067
-anchor_right = 0.067
-margin_left = -0.00800037
+margin_left = 16.742
 margin_top = 15.0
-margin_right = 67.992
+margin_right = 84.742
 margin_bottom = 49.0
 text = "Exit"
+script = ExtResource( 4 )
 
 [node name="autocast" type="Button" parent="Panel"]
-anchor_left = 0.067
-anchor_right = 0.067
-margin_left = -0.00800037
+margin_left = 17.0
 margin_top = 75.0
-margin_right = 139.992
+margin_right = 157.0
 margin_bottom = 109.0
 text = "Autocast: Off"
+script = ExtResource( 4 )
 
 [node name="autoreel" type="Button" parent="Panel"]
-anchor_left = 0.067
-anchor_right = 0.067
-margin_left = -0.00800037
+margin_left = 16.742
 margin_top = 115.0
-margin_right = 139.992
+margin_right = 156.742
 margin_bottom = 149.0
 text = "Autocast: Off"
+script = ExtResource( 4 )
 
 [node name="automash" type="Button" parent="Panel"]
-anchor_left = 0.067
-anchor_right = 0.067
-margin_left = -0.00800037
+margin_left = 16.742
 margin_top = 155.0
-margin_right = 149.992
+margin_right = 166.742
 margin_bottom = 189.0
 text = "Automash: Off"
+script = ExtResource( 4 )
 
 [node name="baitautorefill" type="Button" parent="Panel"]
-anchor_left = 0.067
-anchor_right = 0.067
-margin_left = -0.00800037
+margin_left = 16.742
 margin_top = 300.0
-margin_right = 149.992
+margin_right = 166.742
 margin_bottom = 334.0
 text = "Bait Auto Refill: Off"
+script = ExtResource( 4 )
+
+[node name="catchqualities" type="Button" parent="Panel"]
+margin_left = 17.0
+margin_top = 340.0
+margin_right = 178.0
+margin_bottom = 374.0
+text = "Select Catch Qualities"
+script = ExtResource( 4 )
 
 [node name="cast_slider" type="HSlider" parent="Panel"]
 margin_left = 15.0
@@ -97,15 +102,101 @@ step = 0.1
 value = 1.5
 
 [node name="Label" type="Label" parent="Panel/cast_slider"]
-anchor_left = 0.439
-anchor_top = -0.5
-anchor_right = 0.439
-anchor_bottom = -0.5
-margin_left = -72.435
-margin_top = -17.0
-margin_right = 72.565
-margin_bottom = 17.0
+anchor_left = -0.091
+anchor_top = -6.937
+anchor_right = -0.091
+anchor_bottom = -6.937
+margin_left = 15.015
+margin_top = 188.984
+margin_right = 160.015
+margin_bottom = 222.984
 text = "Cast Distance: 1.5"
+align = 1
+
+[node name="Panel2" type="Panel" parent="."]
+visible = false
+anchor_left = -5.42667
+anchor_top = -0.000333328
+anchor_right = -2.747
+anchor_bottom = 3.787
+margin_top = 0.0249996
+margin_right = 0.0250092
+margin_bottom = -0.0250092
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="normal" type="CheckBox" parent="Panel2"]
+anchor_left = 0.065
+anchor_top = 0.053
+anchor_right = 0.701
+anchor_bottom = 0.173
+margin_left = -0.0650015
+margin_top = -0.052001
+margin_right = 0.098999
+margin_bottom = -0.132004
+text = "Normal"
+script = ExtResource( 4 )
+
+[node name="shining" type="CheckBox" parent="Panel2"]
+anchor_left = 0.065
+anchor_top = 0.211
+anchor_right = 0.701
+anchor_bottom = 0.331
+margin_left = -0.0650015
+margin_top = 0.0759964
+margin_right = 0.098999
+margin_bottom = -0.00400543
+text = "Shining"
+script = ExtResource( 4 )
+
+[node name="glistening" type="CheckBox" parent="Panel2"]
+anchor_left = 0.065
+anchor_top = 0.37
+anchor_right = 0.701
+anchor_bottom = 0.489
+margin_left = -0.0650015
+margin_top = -0.0800018
+margin_right = 0.098999
+margin_bottom = 0.123993
+text = "Glistening"
+script = ExtResource( 4 )
+
+[node name="opulent" type="CheckBox" parent="Panel2"]
+anchor_left = 0.065
+anchor_top = 0.528
+anchor_right = 0.701
+anchor_bottom = 0.648
+margin_left = -0.0650015
+margin_top = 0.0480042
+margin_right = 0.098999
+margin_bottom = -0.0319977
+text = "Opulent"
+script = ExtResource( 4 )
+
+[node name="radiant" type="CheckBox" parent="Panel2"]
+anchor_left = 0.065
+anchor_top = 0.687
+anchor_right = 0.701
+anchor_bottom = 0.806
+margin_left = -0.0650015
+margin_top = -0.108017
+margin_right = 0.098999
+margin_bottom = 0.0959778
+text = "Radiant"
+script = ExtResource( 4 )
+
+[node name="alpha" type="CheckBox" parent="Panel2"]
+anchor_left = 0.065
+anchor_top = 0.845
+anchor_right = 0.701
+anchor_bottom = 0.965
+margin_left = -0.0650015
+margin_top = 0.019989
+margin_right = 0.098999
+margin_bottom = -0.0599976
+text = "Alpha"
+script = ExtResource( 4 )
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Panel/exit" to="." method="_on_exit_pressed"]
@@ -113,4 +204,11 @@ text = "Cast Distance: 1.5"
 [connection signal="pressed" from="Panel/autoreel" to="." method="_on_autoreel_pressed"]
 [connection signal="pressed" from="Panel/automash" to="." method="_on_automash_pressed"]
 [connection signal="pressed" from="Panel/baitautorefill" to="." method="_on_baitautorefill_pressed"]
+[connection signal="pressed" from="Panel/catchqualities" to="." method="_on_selectqualities_pressed"]
 [connection signal="value_changed" from="Panel/cast_slider" to="." method="_on_cast_slider_value_changed"]
+[connection signal="pressed" from="Panel2/normal" to="." method="_on_quality_checkbox_pressed" binds= [ "Normal" ]]
+[connection signal="pressed" from="Panel2/shining" to="." method="_on_quality_checkbox_pressed" binds= [ "Shining" ]]
+[connection signal="pressed" from="Panel2/glistening" to="." method="_on_quality_checkbox_pressed" binds= [ "Glistening" ]]
+[connection signal="pressed" from="Panel2/opulent" to="." method="_on_quality_checkbox_pressed" binds= [ "Opulent" ]]
+[connection signal="pressed" from="Panel2/radiant" to="." method="_on_quality_checkbox_pressed" binds= [ "Radiant" ]]
+[connection signal="pressed" from="Panel2/alpha" to="." method="_on_quality_checkbox_pressed" binds= [ "Alpha" ]]
