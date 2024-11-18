@@ -72,6 +72,27 @@ public class MinigamePatch : IScriptMod
                 yield return new Token(TokenType.Colon);
 
                 yield return new Token(TokenType.Newline, 2);
+
+                yield return new IdentifierToken("PlayerData");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("_send_notification");
+                yield return new Token(TokenType.ParenthesisOpen);
+                yield return new ConstantToken(new StringVariant("The fish was let off the hook due to being of "));
+                yield return new Token(TokenType.OpAdd);
+                yield return new IdentifierToken("YAAM");
+                yield return new Token(TokenType.Period);
+                yield return new IdentifierToken("_get_quality_name");
+                yield return new Token(TokenType.ParenthesisOpen);
+                yield return new IdentifierToken("params");
+                yield return new Token(TokenType.BracketOpen);
+                yield return new ConstantToken(new StringVariant("quality"));
+                yield return new Token(TokenType.BracketClose);
+                yield return new Token(TokenType.ParenthesisClose);
+                yield return new Token(TokenType.OpAdd);
+                yield return new ConstantToken(new StringVariant(" quality!"));
+                yield return new Token(TokenType.ParenthesisClose);
+                
+                yield return new Token(TokenType.Newline, 2);
                 
                 yield return new IdentifierToken("_kill");
                 yield return new Token(TokenType.ParenthesisOpen);
